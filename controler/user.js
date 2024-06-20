@@ -54,7 +54,7 @@ const loginUser = async (req , res) =>{
     const user = await userModel.findOne({Username});
 
     if(!user){
-        return res.Status(402).json({
+        return res.status(402).json({
             success: false,
             message: "Inavlid username or password"
         });
@@ -63,7 +63,7 @@ const loginUser = async (req , res) =>{
     const isPassword = bcrypt.compareSync(password , user.password);
 
     if(!isPassword){
-        return res.Status(404).json({
+        return res.status(404).json({
             success: false,
             message: "Inavlid password"
         })
