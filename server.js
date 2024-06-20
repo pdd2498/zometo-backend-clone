@@ -16,7 +16,7 @@ const app = express();
 
 
 
-mongoose.connect(process.env.MONGO_URI).then(()=>console.log("data base conect successfull")).catch((err) => console.log(err));
+mongoose.connect("mongodb+srv://pdd2498:7Sx7Aloz3XQ0SlGf@cluster0.18ap8on.mongodb.net/").then(()=>console.log("data base conect successfull")).catch((err) => console.log(err , "mongose error conecting"));
 
 app.use(core());
 app.use(express.json());
@@ -39,4 +39,4 @@ app.use("/test" , (req,res)=>{
 app.use(errorHandiling.errorHandler);
 
 
-app.listen(process.env.PORT_NO , ()=>console.log(`servrr is up on runing ${process.env.PORT_NO}`));
+app.listen("10000" , ()=>console.log(`servrr is up on runing ${process.env.PORT_NO}`));
