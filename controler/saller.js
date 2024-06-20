@@ -1,5 +1,5 @@
 const sallerModel = require("../model/saller");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const catchAsync = require("../middlewares/errorHandiling");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
@@ -35,12 +35,12 @@ const saller = async (req ,res)=>{
         return;
         }
         console.log(req.body,"  ",req.file);
-        const salt = bcrypt.genSaltSync(5);
-    const hase = bcrypt.hashSync(req.body.password , salt);
+        // const salt = bcrypt.genSaltSync(5);
+        // const hase = bcrypt.hashSync(req.body.password , salt);
 
     const user = {
         ...req.body,
-        password: hase,
+        // password: hase,
         Image_url: `http://localhost:10000/profile/${req.file.filename}`,
     };
     await sallerModel.create(user);
@@ -64,7 +64,9 @@ const login = async (req ,res )=>{
         });
     }
     
-    const isPassword = bcrypt.compareSync(password , user.password);
+    // const isPassword = bcrypt.compareSync(password , user.password);
+
+    const isPassword = (password === user.password);
 
     if(!isPassword){
         return res.json({

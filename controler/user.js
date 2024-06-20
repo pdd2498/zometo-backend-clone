@@ -1,5 +1,5 @@
 const userModel = require("../model/user");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const catchAsync = require("../middlewares/errorHandiling");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
@@ -10,12 +10,12 @@ dotenv.config();
 
 const addNewAdmin = async (req , res) =>{
 
-    const salt = bcrypt.genSaltSync(5);
-    const hash = bcrypt.hashSync(req.body.password , salt);
+    // const salt = bcrypt.genSaltSync(5);
+    // const hash = bcrypt.hashSync(req.body.password , salt);
 
     const user = {
         ...req.body,
-        password: hash,
+        // password: hash,
         role: "ADMIN"
     };
 
@@ -60,7 +60,9 @@ const loginUser = async (req , res) =>{
         });
     }
     
-    const isPassword = bcrypt.compareSync(password , user.password);
+    // const isPassword = bcrypt.compareSync(password , user.password);
+
+    const isPassword = (password === user.password);
 
     if(!isPassword){
         return res.status(404).json({
