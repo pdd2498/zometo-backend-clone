@@ -41,7 +41,7 @@ const saller = async (req ,res)=>{
     const user = {
         ...req.body,
         // password: hase,
-        Image_url: `http://localhost:10000/profile/${req.file.filename}`,
+        Image_url: `https://zometo-backend-clone-2.onrender.com/profile/${req.file.filename}`,
     };
     await sallerModel.create(user);
 

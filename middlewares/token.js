@@ -6,18 +6,20 @@ dotenv.config();
 
 const userData = async (req , res , next)=>{
     const token = req.headers;
+
+    console.log("pass 3")
     if(!token.authorization){
         res.status(404).json({
             msg: "unvalid token"
         })
     }
 
-
+    console.log("pass 4")
     try{
         jwt.verify(token.authorization , process.env.JWT_KEY);
-
+        console.log("pass 5")
     } catch(err){
-        res.status(404).json({
+        return  res.status(404).json({
         msg: "jwt err"
        });
     };
@@ -34,7 +36,7 @@ const userData = async (req , res , next)=>{
             msg: "token exp"
         });
     };
-
+        console.log("pass 6")
     // cheking is user id is valid or not
 
     const id = tokenDecod?.id;
@@ -44,8 +46,11 @@ const userData = async (req , res , next)=>{
             msg: "user id not found"
         });
     };
+
+    console.log("pass 7")
+
     req.user = userId;
-    next();
+    next()
 };
 
 module.exports = userData;

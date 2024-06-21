@@ -34,7 +34,7 @@ const Products = async (req ,res)=>{
 
     const user = {
         ...req.body,
-        Image_url: `http://localhost:10000/profile/${req.file.filename}`,
+        Image_url: `https://zometo-backend-clone-2.onrender.com/profile/${req.file.filename}`,
     };
     await productModle.create(user);
 

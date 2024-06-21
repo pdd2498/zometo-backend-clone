@@ -7,7 +7,7 @@ dotenv.config();
 const userData = async (req , res , next)=>{
     const data = req.user
 
-    res.json({
+    return res.json({
         msg: "post viue now",
         data
     })

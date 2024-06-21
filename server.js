@@ -29,12 +29,6 @@ app.use('/profile', express.static('photos'));
 app.use("/api" , saller);
 app.use("/api/orders", orders);
 app.use("/api/products" , products);
-app.use("/test" , (req,res)=>{
-    return res.json({
-        sucess: true,
-        message: "go ahed"
-    });
-});
 
 app.use(errorHandiling.errorHandler);
 

@@ -1,6 +1,5 @@
 const express = require("express");
 const userData = require("../controler/post");
-const role = require("../middlewares/roleMiddleware");
 const token = require("../middlewares/token");
 const sallerToken = require("../middlewares/sallerToken");
 

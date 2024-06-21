@@ -16,7 +16,6 @@ const addNewAdmin = async (req , res) =>{
     const user = {
         ...req.body,
         // password: hash,
-        role: "ADMIN"
     };
 
     await userModel.create(user);
@@ -28,27 +27,28 @@ const addNewAdmin = async (req , res) =>{
 
 };
 
-const addNewDoctor = async (req , res) =>{
+// const addNewDoctor = async (req , res) =>{
 
-    const salt = bcrypt.genSaltSync(5);
-    const hash = bcrypt.hashSync(req.body.password , salt);
+//     const salt = bcrypt.genSaltSync(5);
+//     const hash = bcrypt.hashSync(req.body.password , salt);
 
-    const user = {
-        ...req.body,
-        password: hash,
-        role: "DOCTOR"
-    };
+//     const user = {
+//         ...req.body,
+//         password: hash,
+//         role: "DOCTOR"
+//     };
 
-    await userModel.create(user);
+//     await userModel.create(user);
 
-    res.json({
-        success: true,
-        message: "new doctor added",
-    });
+//     res.json({
+//         success: true,
+//         message: "new doctor added",
+//     });
 
-};
+// };
 
 const loginUser = async (req , res) =>{
+
     const {Username , password} = req.body;
 
     const user = await userModel.findOne({Username});
@@ -59,7 +59,7 @@ const loginUser = async (req , res) =>{
             message: "Inavlid username or password"
         });
     }
-    
+    console.log("pass 1")
     // const isPassword = bcrypt.compareSync(password , user.password);
 
     const isPassword = (password === user.password);
@@ -70,6 +70,9 @@ const loginUser = async (req , res) =>{
             message: "Inavlid password"
         })
     }
+    console.log("pass 2")
+
+
     const jwtpaylode = {
         role: user.role,
         id: user.id,
@@ -87,7 +90,7 @@ const loginUser = async (req , res) =>{
 
 const userController = {
     addNewAdmin: catchAsync.catchAsync(addNewAdmin),
-    addNewDoctor: catchAsync.catchAsync(addNewDoctor),
+    // addNewDoctor: catchAsync.catchAsync(addNewDoctor),
     loginUser: catchAsync.catchAsync(loginUser),
 }
 

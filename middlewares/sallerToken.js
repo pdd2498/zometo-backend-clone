@@ -5,7 +5,9 @@ const UserModel = require("../model/saller");
 dotenv.config();
 
 const userData = async (req , res , next)=>{
+
     const token = req.headers;
+
     if(!token.authorization){
         return res.status(404).json({
             msg: "unvalid token"
