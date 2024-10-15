@@ -90,7 +90,6 @@ const loginUser = async (req , res) =>{
 
 const userController = {
     addNewAdmin: catchAsync.catchAsync(addNewAdmin),
-    // addNewDoctor: catchAsync.catchAsync(addNewDoctor),
     loginUser: catchAsync.catchAsync(loginUser),
 }
 

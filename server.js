@@ -10,6 +10,8 @@ const core = require("cors");
 const path = require("path");
 const orders = require("./router/orders");
 
+const  otp  = require("./router/otp");
+
 dotenv.config();
 
 const app = express();
@@ -29,6 +31,8 @@ app.use('/profile', express.static('photos'));
 app.use("/api" , saller);
 app.use("/api/orders", orders);
 app.use("/api/products" , products);
+
+app.use("/api/otp" , otp)
 
 app.use(errorHandiling.errorHandler);
 

@@ -3,6 +3,7 @@ const catchAsync = require("../middlewares/errorHandiling");
 const sallerModel = require("../model/saller");
 const multer = require("multer");
 const path = require("path");
+const uploadResult = require("../utils/cloudnery");
 
 const uplodeDirectorypath = path.join(__dirname , ".." , "photos");
 
@@ -30,12 +31,15 @@ const Products = async (req ,res)=>{
             console.log("file uploding err",err);
         return;
         }
-        console.log(req.body,"  ",req.file);
+
+    const result = await uploadResult(req.file.path);
+    
 
     const user = {
         ...req.body,
-        Image_url: `https://zometo-backend-clone-2.onrender.com/profile/${req.file.filename}`,
+        Image_url: result.url,
     };
+
     await productModle.create(user);
 
    return res.json({
